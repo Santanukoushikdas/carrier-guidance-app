@@ -85,7 +85,7 @@ This is a web-based application designed to help students and parents explore su
 - **Domain:** Education  
 - **Difficulty Level:** Medium  
 - **University:** Assam Down Town University  
-- **Student:** Bungpurlu Basumatary  
+- **Student:** santanukoushikdas  
 - **Course:** BTech CTIS – 4rd Semester  
 
 ---
@@ -97,4 +97,4 @@ Core features like student authentication, college filtering, and aptitude testi
 
 ---
 
-© 2025 Bungpurlu Basumatary. Internship project for educational use.
+ Internship project for educational use.
