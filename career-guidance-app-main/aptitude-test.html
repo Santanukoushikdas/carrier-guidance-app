@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aptitude Test - Career Guidance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Aptitude Test</h1>
+  </header>
+
+  <main>
+    <form id="quiz-form">
+      <h3>1. VERBAL: Synonym of "Rapid"</h3>
+      <input type="radio" name="q1" value="0"> Slow<br>
+      <input type="radio" name="q1" value="1"> Fast<br>
+      <input type="radio" name="q1" value="0"> Quiet<br>
+
+      <h3>2. QUANT: What is 12 + 8?</h3>
+      <input type="radio" name="q2" value="0"> 18<br>
+      <input type="radio" name="q2" value="1"> 20<br>
+      <input type="radio" name="q2" value="0"> 22<br>
+
+      <h3>3. GK: Capital of France?</h3>
+      <input type="radio" name="q3" value="1"> Paris<br>
+      <input type="radio" name="q3" value="0"> Rome<br>
+      <input type="radio" name="q3" value="0"> Madrid<br>
+
+      <br>
+      <button type="submit">Submit Test</button>
+    </form>
+
+    <div id="result" style="display: none;">
+      <h2>Your Score: <span id="score"></span>/3</h2>
+      <a href="test-complete.html">Next</a>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("quiz-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let score = 0;
+      const answers = new FormData(e.target);
+      for (const [_, value] of answers.entries()) {
+        score += parseInt(value);
+      }
+      document.getElementById("quiz-form").style.display = "none";
+      document.getElementById("score").innerText = score;
+      document.getElementById("result").style.display = "block";
+    });
+  </script>
+</body>
+</html>

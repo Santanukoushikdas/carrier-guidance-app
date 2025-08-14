@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Location - Career Guidance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Select Preferred Study Location</h1>
+  </header>
+
+  <main>
+    <p>Please choose where you want to study:</p>
+
+    <button onclick="selectLocation('India')">India</button>
+    <button onclick="selectLocation('Abroad')">Abroad</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Career Guidance App</p>
+  </footer>
+
+  <script>
+    function selectLocation(choice) {
+      localStorage.setItem('selectedLocation', choice);
+      alert('You selected: ' + choice);
+      window.location.href = 'college-list.html';
+    }
+  </script>
+</body>
+</html>

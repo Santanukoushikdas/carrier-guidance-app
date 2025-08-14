@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Guidance - Login/Signup</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .hidden {
+      display: none;
+    }
+    .switch-link {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .switch-link a {
+      cursor: pointer;
+      color: #007bff;
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Career Guidance App</h1>
+
+  <!-- Login Form -->
+  <form id="login-form">
+    <h2>Login</h2>
+    <label for="login-email">Email:</label>
+    <input type="email" id="login-email" required />
+
+    <label for="login-password">Password:</label>
+    <input type="password" id="login-password" required />
+
+    <button type="submit">Login</button>
+    <div class="switch-link">
+      Don't have an account? <a id="show-signup">Sign up</a>
+    </div>
+  </form>
+
+  <!-- Signup Form -->
+  <form id="signup-form" class="hidden">
+    <h2>Sign Up</h2>
+    <label for="signup-email">Email:</label>
+    <input type="email" id="signup-email" required />
+
+    <label for="signup-password">Password:</label>
+    <input type="password" id="signup-password" required />
+
+    <button type="submit">Sign Up</button>
+    <div class="switch-link">
+      Already have an account? <a id="show-login">Log in</a>
+    </div>
+  </form>
+
+  <footer>
+    <p>&copy; 2025 Career Guidance App</p>
+  </footer>
+
+  <!-- Firebase v8 SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <!-- Firebase Config & Initialization (your working config) -->
+  <script>
+    const firebaseConfig = {
+  apiKey: "AIzaSyB1BeF5ev-pW1uALGIIMitGrYhhQ0GvnsM",
+  authDomain: "career-guidance-a3bc4.firebaseapp.com",
+  projectId: "career-guidance-a3bc4",
+  storageBucket: "career-guidance-a3bc4.appspot.com",  // ✅ FIXED
+  messagingSenderId: "574933015228",
+  appId: "1:574933015228:web:eac8ec063efa8f3df34eb9",
+  measurementId: "G-4W2B5FDNXP"
+};
+
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+  </script>
+
+  <!-- Login + Signup Logic -->
+  <script>
+    const loginForm = document.getElementById("login-form");
+    const signupForm = document.getElementById("signup-form");
+    const showSignup = document.getElementById("show-signup");
+    const showLogin = document.getElementById("show-login");
+
+    // Toggle forms
+    showSignup.addEventListener("click", () => {
+      loginForm.classList.add("hidden");
+      signupForm.classList.remove("hidden");
+    });
+
+    showLogin.addEventListener("click", () => {
+      signupForm.classList.add("hidden");
+      loginForm.classList.remove("hidden");
+    });
+
+    // Login handler
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      console.log("Trying to login:", email);
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Login successful!");
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          console.error("Login error:", error);
+          alert("Login failed: " + error.message);
+        });
+    });
+
+    // Signup handler
+    signupForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+
+      console.log("Trying to sign up:", email);
+
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Signup successful! You can now log in.");
+          signupForm.classList.add("hidden");
+          loginForm.classList.remove("hidden");
+        })
+        .catch((error) => {
+          console.error("Signup error:", error);
+          alert("Signup failed: " + error.message);
+        });
+    });
+  </script>
+</body>
+</html>

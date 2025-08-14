@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College List - Career Guidance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Recommended Colleges</h1>
+  </header>
+
+  <main>
+    <h2 id="location-heading"></h2>
+    <ul id="college-list"></ul>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Career Guidance App</p>
+  </footer>
+
+  <script>
+    const colleges = {
+      India: [
+        "IIT Bombay",
+        "IIT Delhi",
+        "NIT Trichy",
+        "BITS Pilani",
+        "VIT Vellore"
+      ],
+      Abroad: [
+        "MIT - USA",
+        "Stanford University",
+        "University of Toronto",
+        "Oxford University",
+        "National University of Singapore"
+      ]
+    };
+
+    const selectedLocation = localStorage.getItem('selectedLocation') || "India";
+    document.getElementById('location-heading').innerText = "Colleges in " + selectedLocation;
+
+    const listElement = document.getElementById('college-list');
+    colleges[selectedLocation].forEach(college => {
+      const li = document.createElement('li');
+      li.innerText = college;
+      listElement.appendChild(li);
+    });
+  </script>
+</body>
+</html>
